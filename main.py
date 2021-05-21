@@ -67,8 +67,8 @@ def run(data, model, optimizer, path, rate=0.001, beta=0.9, scale=1, epochs=3):
 
 print('\nReading Data')
 
-path = 'D:\\Users\\Koral Kulacoglu\\Coding\\python\\AI\\CWSF\\KorCNN\\'
-dataPath = 'D:\\Users\\Koral Kulacoglu\\Coding\\python\\AI\\CWSF\\LeukemiaData\\C-NMC_Leukemia\\training_data'
+path = input('Model Path: ')
+dataPath = input('Dataset Path: ')
 
 data = grab(dataPath)
 
