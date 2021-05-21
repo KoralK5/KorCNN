@@ -85,8 +85,8 @@ print('\nTraining Model')
 
 accuracy, loss = run(data, model, optimizer, path, rate=rate, beta=beta, scale=scale, epochs=epochs)
 
-epoch_accuracy = np.sum(np.array_split(accuracy, epochs), axis=1) / len(outputs)
-epoch_loss = np.sum(np.array_split(loss, epochs), axis=1) / len(outputs)
+epoch_accuracy = np.sum(np.array_split(accuracy, epochs), axis=1) / len(data)
+epoch_loss = np.sum(np.array_split(loss, epochs), axis=1) / len(data)
 
 print('\n\nTRAINING PROGRESS\n')
 print('Accuracy ➤ ', epoch_accuracy)
