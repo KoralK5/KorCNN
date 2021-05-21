@@ -26,14 +26,20 @@ def grab(path, dims):
 	np.random.shuffle(data)
 	return data
 
-def plot(acc, loss, title):
-	fig, axs = plt.subplots(2)
+def plot(accuracy, loss, epoch_accuracy, epoch_loss, title='Model'):
+	fig, axs = plt.subplots(2,2)
 	fig.suptitle(title)
-	axs[0].plot(range(len(acc)), acc, 'tab:blue')
-	axs[0].set(ylabel='Accuracy')
+	axs[0,0].plot(range(len(epoch_accuracy)), epoch_accuracy, 'tab:blue')
+	axs[0,0].set(ylabel='Accuracy')
 
-	axs[1].plot(range(len(loss)), loss, 'tab:red')
-	axs[1].set(xlabel='Epoch', ylabel='Loss')
+	axs[1,0].plot(range(len(epoch_loss)), epoch_loss, 'tab:red')
+	axs[1,0].set(xlabel='Epoch', ylabel='Loss')
+
+	axs[0,1].plot(range(len(accuracy)), accuracy, 'tab:blue')
+	axs[0,1].set()
+
+	axs[1,1].plot(range(len(loss)), loss, 'tab:red')
+	axs[1,1].set(xlabel='Iteration')
 
 	plt.show()
 
@@ -65,8 +71,8 @@ def run(data, model, optimizer, path, rate=0.001, beta=0.9, scale=1, epochs=3):
 
 print('\nReading Data')
 
-path = 'D:\\Users\\Koral Kulacoglu\\Coding\\python\\AI\\CWSF\\KorCNN\\'
-dataPath = 'D:\\Users\\Koral Kulacoglu\\Coding\\python\\AI\\CWSF\\LeukemiaData\\C-NMC_Leukemia\\training_data'
+path = input('Model Path: ')
+dataPath = input('Data Path: ')
 
 dims = (96,96,3)
 data = grab(dataPath, dims)
@@ -94,5 +100,4 @@ print('\n\nTRAINING PROGRESS\n')
 print('Accuracy ➤ ', epoch_accuracy)
 print('Loss     ➤ ', epoch_loss)
 
-plot(epoch_accuracy, epoch_loss, 'Epochs')
-plot(accuracy, loss, 'Iterations')
+plot(accuracy, loss, epoch_accuracy, epoch_loss, 'TRAINING PROGRESS')
