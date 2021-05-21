@@ -24,7 +24,6 @@ def grab(path):
 			output = int(category=='hem')
 			for img in os.listdir(p):
 				data.append([fix(imread(os.path.join(p,img))), np.array([output, not(output)])])
-		return data
 	np.random.shuffle(data)
 	return data
 
@@ -67,26 +66,25 @@ def run(data, model, optimizer, path, rate=0.001, beta=0.9, scale=1, epochs=3):
 
 print('\nReading Data')
 
-path = input('Model Path: ')
-dataPath = input('Dataset Path: ')
+path = 'D:\\Users\\Koral Kulacoglu\\Coding\\python\\AI\\CWSF\\KorCNN\\'
+dataPath = 'D:\\Users\\Koral Kulacoglu\\Coding\\python\\AI\\CWSF\\LeukemiaData\\C-NMC_Leukemia\\training_data'
 
 data = grab(dataPath)
-
-optimizer = gradient_descent
-rate = 0.005
-beta = 0.9
-scale = 1
-epochs = 3
-
 model = [
 	Conv(18,7),
 	Maxpool(4),
 	Softmax(22*70*18, data[0][1].size)
 	]
 
+optimizer = gradient_descent
+rate = 0.005
+beta = 0.9
+scale = 1
+epochs = 1
+
 print('\nTraining Model')
 
-accuracy, loss = run(data, model, optimizer, path, rate, beta, scale, epochs)
+accuracy, loss = run(data, model, optimizer, path, rate=rate, beta=beta, scale=scale, epochs=epochs)
 
 epoch_accuracy = np.sum(np.array_split(accuracy, epochs), axis=1) / len(outputs)
 epoch_loss = np.sum(np.array_split(loss, epochs), axis=1) / len(outputs)
