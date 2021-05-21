@@ -56,7 +56,10 @@ def run(data, model, optimizer, path, rate=0.001, beta=0.9, scale=1, epochs=3):
 			np.save(f'{path}model\\weights.npy', np.array([model[2].weight, model[2].bias], dtype=object))
 			f = open(f'{path}model\\scores.txt', 'a'); f.write(f'\n{loss}'); f.close()
 
-			print(f'\nITERATION {row+1}/{dims} OF EPOCH {epoch+1}/{epochs}:\n')
+			percent = int(((epoch)/epochs + ((row+1)/dims) * (1/epochs)) * 100)
+
+			print(f'\n{percent*2//10*"▣"}▷ {percent}%')
+			print(f'ITERATION {row+1}/{dims} OF EPOCH {epoch+1}/{epochs}:\n')
 			print('Output    ➤ ', output)
 			print('Real      ➤ ', data[row][1])
 			print('Loss      ➤ ', '{0:.4f}'.format(loss))
@@ -72,8 +75,8 @@ def run(data, model, optimizer, path, rate=0.001, beta=0.9, scale=1, epochs=3):
 
 print('\nReading Data')
 
-path = input('Model Path: ')
-dataPath = input('Data Path: ')
+path = input('Model Path')
+dataPath = input('Data Path')
 
 dims = (96,96,3)
 data = grab(dataPath, dims)
