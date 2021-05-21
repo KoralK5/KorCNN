@@ -7,4 +7,4 @@ My own numpy convolutional neural network library with custom model creation and
 
 ![image](https://user-images.githubusercontent.com/62809012/119168384-d59c8a00-ba2e-11eb-96cb-694cbdf934dd.png)
 
-![Untitled drawing (1)](https://user-images.githubusercontent.com/62809012/119169172-b4886900-ba2f-11eb-86d1-4e838c99a39b.png)
+![image](https://user-images.githubusercontent.com/62809012/119169240-c5d17580-ba2f-11eb-9f1a-960260073c5d.png)
