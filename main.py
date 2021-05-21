@@ -21,7 +21,7 @@ def grab(path, dims):
 			pt = f'{path}\\{folder}'
 			p = f'{pt}\\{category}'
 			output = int(category=='hem')
-			for img in os.listdir(p)[:1]:
+			for img in os.listdir(p):
 				data.append([fix(imread(os.path.join(p,img)), dims), np.array([output, not(output)])])
 	np.random.shuffle(data)
 	return data
