@@ -29,6 +29,7 @@ def grab(path, dims):
 def plot(accuracy, loss, epoch_accuracy, epoch_loss, title='Model'):
 	fig, axs = plt.subplots(2,2)
 	fig.suptitle(title)
+	
 	axs[0,0].plot(range(len(epoch_accuracy)), epoch_accuracy, 'tab:blue')
 	axs[0,0].set(ylabel='Accuracy')
 
