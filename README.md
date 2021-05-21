@@ -1,2 +1,2 @@
 # KorCNN
-I make my own convolutional neural network library using NumPy and an Indian tutorial (oh, also custom optimizers)
+My own numpy convolutional neural network library with custom model creation and optimization.
