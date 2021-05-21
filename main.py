@@ -21,7 +21,7 @@ def grab(path, dims):
 			pt = f'{path}\\{folder}'
 			p = f'{pt}\\{category}'
 			output = int(category=='hem')
-			for img in os.listdir(p):
+			for img in os.listdir(p)[:1]:
 				data.append([fix(imread(os.path.join(p,img)), dims), np.array([output, not(output)])])
 	np.random.shuffle(data)
 	return data
@@ -47,7 +47,7 @@ def plot(accuracy, loss, epoch_accuracy, epoch_loss, title='Model'):
 def run(data, model, optimizer, path, rate=0.001, beta=0.9, scale=1, epochs=3):
 	start = time()
 	f = open(f'{path}model\\scores.txt', 'r+'); f.truncate(0)
-	l, a, dims = [], [], len(data)
+	l, a, dims = [], [1,0], len(data)
 	for epoch in range(epochs):
 		for row in range(dims):
 			output, loss, accuracy = train(data[row][0], data[row][1], model, optimizer, rate, beta, scale)
@@ -63,7 +63,7 @@ def run(data, model, optimizer, path, rate=0.001, beta=0.9, scale=1, epochs=3):
 			print('Output    ➤ ', output)
 			print('Real      ➤ ', data[row][1])
 			print('Loss      ➤ ', '{0:.4f}'.format(loss))
-			print('Accuracy  ➤ ', accuracy)
+			print('Accuracy  ➤ ', accuracy, f'({a[::-1].index(not(a[-1]))} streak)')
 			print('Time      ➤ ', f'{int(time() - start)}s\n')
 
 	print('\n\nTRAINING REPORT\n')
@@ -71,12 +71,12 @@ def run(data, model, optimizer, path, rate=0.001, beta=0.9, scale=1, epochs=3):
 	print('Accuracy ➤ ', sum(a)/len(a))
 	print('Duration ➤ ', '{0:.4f}'.format(time() - start), 'seconds')
 
-	return a, l
+	return a[2:], l
 
 print('\nReading Data')
 
-path = input('Model Path')
-dataPath = input('Data Path')
+path = input('Model Path:')
+dataPath = input('Data Path:')
 
 dims = (96,96,3)
 data = grab(dataPath, dims)
